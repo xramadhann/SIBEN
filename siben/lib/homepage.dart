@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
 import 'package:flutter/material.dart';
-import 'package:siben/detailEvent.dart';
+import 'package:siben/viewmodels/museumTitle.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -10,60 +10,58 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  final controller = TextEditingController();
+
+  List<Museum> museums = allMuseums;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Text(
-            "data",
-            style: TextStyle(
-                color: Colors.amber, fontSize: 50, fontWeight: FontWeight.bold),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DetailEvent()));
-              },
-              child: Container(
-                decoration: BoxDecoration(
+      body: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.all(20),
+            child: TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search),
+                hintText: 'Museum Title',
+                border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.amber,
-                ),
-                height: 200,
-                child: const Text(
-                  "text",
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
+                  borderSide: BorderSide(color: Colors.amber),
                 ),
               ),
+              onChanged: searchMuseum,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DetailEvent()));
+          Expanded(
+            child: ListView.builder(
+              itemCount: museums.length,
+              itemBuilder: (context, index) {
+                final museum = museums[index];
+                return ListTile(
+                  leading: Image.network(
+                    museum.urlImage,
+                    fit: BoxFit.cover,
+                    width: 50,
+                    height: 50,
+                  ),
+                  title: Text(museum.title),
+                );
               },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.amber,
-                ),
-                height: 200,
-                child: const Text(
-                  "text",
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
             ),
-          ),
+          )
         ],
       ),
     );
+  }
+
+  void searchMuseum(String query) {
+    final suggestions = allMuseums.where((museum) {
+      final museumTitle = museum.title.toLowerCase();
+      final input = query.toLowerCase();
+      return museumTitle.contains(input);
+    }).toList();
+    setState(() => museums = suggestions);
   }
 }
