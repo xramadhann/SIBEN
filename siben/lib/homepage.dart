@@ -8,6 +8,15 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var startIndex = (currentPage - 1) * itemsPerPage;
+    var endIndex = startIndex + itemsPerPage;
+    endIndex = endIndex > museums.length ? museums.length : endIndex;
+
+    // Pastikan terdapat setidaknya satu item yang ditampilkan
+    if (startIndex >= museums.length) {
+      startIndex = museums.length - 1;
+    }
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -20,7 +29,7 @@ class Homepage extends StatelessWidget {
                 hintText: 'Museum Title',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Colors.amber),
+                  borderSide: const BorderSide(color: Colors.amber),
                 ),
               ),
             ),
@@ -73,7 +82,17 @@ class Homepage extends StatelessWidget {
                   );
                 },
               ),
+
             ),
+          ),
+          NumberPagination(
+            pageTotal: numberOfPages,
+            onPageChanged: (index) {
+              setState(() {
+                currentPage = index;
+              });
+            },
+            pageInit: currentPage,
           )
         ],
       ),
