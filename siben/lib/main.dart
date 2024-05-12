@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:siben/homepage.dart';
+import 'package:siben/view/homepage.dart';
 
 void main() {
   runApp(const MyApp());

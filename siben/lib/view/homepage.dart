@@ -8,30 +8,17 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var startIndex = (currentPage - 1) * itemsPerPage;
-    var endIndex = startIndex + itemsPerPage;
-    endIndex = endIndex > museums.length ? museums.length : endIndex;
-
-    // Pastikan terdapat setidaknya satu item yang ditampilkan
-    if (startIndex >= museums.length) {
-      startIndex = museums.length - 1;
-    }
-
     return Scaffold(
       body: Column(
         children: <Widget>[
           Container(
             margin: const EdgeInsets.all(20),
-            child: TextField(
+            child: SearchBar(
+              hintText: "Search",
               onChanged: _controller.searchMuseum,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                hintText: 'Museum Title',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: const BorderSide(color: Colors.amber),
-                ),
-              ),
+              padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.symmetric(horizontal: 15)),
+              leading: const Icon(Icons.search),
             ),
           ),
           Expanded(
@@ -82,17 +69,7 @@ class Homepage extends StatelessWidget {
                   );
                 },
               ),
-
             ),
-          ),
-          NumberPagination(
-            pageTotal: numberOfPages,
-            onPageChanged: (index) {
-              setState(() {
-                currentPage = index;
-              });
-            },
-            pageInit: currentPage,
           )
         ],
       ),
