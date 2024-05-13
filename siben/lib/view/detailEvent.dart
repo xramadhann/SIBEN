@@ -1,14 +1,21 @@
-// detail_event_view.dart
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
 import 'package:siben/models/museumTitle.dart';
-import 'package:get/get.dart';
+import 'package:siben/view/widget/audioControler.dart';
 import 'package:siben/viewmodel/detailEventController.dart';
 
-class DetailEvent extends StatelessWidget {
+class DetailEvent extends StatefulWidget {
   const DetailEvent({Key? key, required this.museum}) : super(key: key);
   final Museum museum;
+
+  @override
+  State<DetailEvent> createState() => _DetailEventState();
+}
+
+class _DetailEventState extends State<DetailEvent> {
+  bool isControlsVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,7 @@ class DetailEvent extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(museum.title),
+            title: Text(widget.museum.title),
             actions: [
               Row(
                 children: [
@@ -40,7 +47,8 @@ class DetailEvent extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         elevation: 0,
                         labelStyle: const TextStyle(fontSize: 14),
-                        onTap: () => controller.changeSubtitle(museum.subtitle),
+                        onTap: () =>
+                            controller.changeSubtitle(widget.museum.subtitle),
                       ),
                       SpeedDialChild(
                         child: Image.asset(
@@ -52,7 +60,7 @@ class DetailEvent extends StatelessWidget {
                         label: 'English',
                         labelStyle: const TextStyle(fontSize: 14),
                         onTap: () =>
-                            controller.changeSubtitle(museum.subtitle2),
+                            controller.changeSubtitle(widget.museum.subtitle2),
                       ),
                       SpeedDialChild(
                         child: Image.asset(
@@ -64,7 +72,7 @@ class DetailEvent extends StatelessWidget {
                         label: 'Mandarin',
                         labelStyle: const TextStyle(fontSize: 14),
                         onTap: () =>
-                            controller.changeSubtitle(museum.subtitle3),
+                            controller.changeSubtitle(widget.museum.subtitle3),
                       ),
                     ],
                     // Widget yang berisi ikon-ikon
@@ -79,25 +87,37 @@ class DetailEvent extends StatelessWidget {
               )
             ],
           ),
-          body: Column(
-            children: [
-              Image.asset(
-                museum.assetImagePath,
-                height: 250,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Obx(
-                  () => Text(
-                    controller.currentSubtitle.value.isNotEmpty
-                        ? controller.currentSubtitle.value
-                        : museum.subtitle,
-                    style: const TextStyle(fontSize: 16),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.asset(
+                  widget.museum.assetImagePath,
+                  height: 250,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Obx(
+                    () => Text(
+                      controller.currentSubtitle.value.isNotEmpty
+                          ? controller.currentSubtitle.value
+                          : widget.museum.subtitle,
+                      style: const TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
-              ),
-            ],
+                // Add other content here
+              ],
+            ),
           ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                isControlsVisible = !isControlsVisible;
+              });
+            },
+            child: const Icon(Icons.volume_up),
+          ),
+          bottomNavigationBar: isControlsVisible ? AudioControls() : null,
         );
       },
     );

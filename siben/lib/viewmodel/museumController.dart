@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import 'package:siben/models/museumTitle.dart';
 
 class MuseumController extends GetxController {

@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+
 import 'package:siben/view/detailEvent.dart';
 import 'package:siben/viewmodel/museumController.dart';
 
 class Homepage extends StatelessWidget {
   final MuseumController _controller = Get.put(MuseumController());
+
+  Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
