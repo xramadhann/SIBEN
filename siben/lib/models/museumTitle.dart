@@ -39,10 +39,10 @@ const allMuseums = [
     assetImagePath: "assets/ramadhan pride.png",
   ),
   Museum(
-    title: "4",
-    subtitle: "gambang kromong",
-    subtitle2: "gambang kromong",
-    subtitle3: "gambang kromong",
-    assetImagePath: "assets/images/gambang_kromong.jpg",
+    title: "Crash Marquez",
+    subtitle: "'Menuju tak terbatas ... dan melampauinya!'",
+    subtitle2: "'To Infinity and Beyond'",
+    subtitle3: "'cang cing cung cang cing cung'",
+    assetImagePath: "assets/marc-marquez-terbang.jpeg",
   ),
 ];
