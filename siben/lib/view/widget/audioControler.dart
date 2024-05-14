@@ -36,7 +36,7 @@ class _AudioControlsState extends State<AudioControls> {
   void initState() {
     super.initState();
     player.setAsset(
-      "assets/your-phone-linging.mp3",
+      "assets/audio/your-phone-linging.mp3",
     );
 
     player.positionStream.listen((p) {

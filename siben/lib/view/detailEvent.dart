@@ -40,7 +40,7 @@ class _DetailEventState extends State<DetailEvent> {
                     children: [
                       SpeedDialChild(
                         child: Image.asset(
-                          "assets/indonesia.png",
+                          "assets/images/indonesia.png",
                           height: 50,
                         ),
                         label: 'Indonesian',
@@ -52,7 +52,7 @@ class _DetailEventState extends State<DetailEvent> {
                       ),
                       SpeedDialChild(
                         child: Image.asset(
-                          "assets/united-kingdom.png",
+                          "assets/images/united-kingdom.png",
                           height: 40,
                         ),
                         backgroundColor: Colors.transparent,
@@ -64,7 +64,7 @@ class _DetailEventState extends State<DetailEvent> {
                       ),
                       SpeedDialChild(
                         child: Image.asset(
-                          "assets/china.png",
+                          "assets/images/china.png",
                           height: 50,
                         ),
                         backgroundColor: Colors.transparent,
