@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
 class AudioControls extends StatefulWidget {
-  const AudioControls({Key? key}) : super(key: key);
+  const AudioControls({Key? key, required this.audioPath}) : super(key: key);
+  final String audioPath;
 
   @override
   State<AudioControls> createState() => _AudioControlsState();
@@ -35,27 +36,46 @@ class _AudioControlsState extends State<AudioControls> {
   @override
   void initState() {
     super.initState();
-    player.setAsset(
-      "assets/your-phone-linging.mp3",
-    );
+    _initAudio(widget.audioPath);
+  }
 
-    player.positionStream.listen((p) {
-      setState(() => position = p);
-    });
+  Future<void> _initAudio(String path) async {
+    try {
+      await player.setAsset(path);
+      player.positionStream.listen((p) {
+        setState(() => position = p);
+      });
 
-    player.durationStream.listen((d) {
-      setState(() => duration = d!);
-    });
+      player.durationStream.listen((d) {
+        setState(() => duration = d ?? Duration.zero);
+      });
 
-    player.playerStateStream.listen((state) {
-      if (state.processingState == ProcessingState.completed) {
-        setState(() {
-          position = Duration.zero;
-        });
-        player.pause();
-        player.seek(position);
-      }
-    });
+      player.playerStateStream.listen((state) {
+        if (state.processingState == ProcessingState.completed) {
+          setState(() {
+            position = Duration.zero;
+          });
+          player.pause();
+          player.seek(position);
+        }
+      });
+    } catch (e) {
+      // Handle audio asset load error
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant AudioControls oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.audioPath != widget.audioPath) {
+      _initAudio(widget.audioPath);
+    }
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
   }
 
   @override
@@ -67,11 +87,13 @@ class _AudioControlsState extends State<AudioControls> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(formatDuration(position)),
-          Slider(
-            min: 0,
-            max: duration.inSeconds.toDouble(),
-            value: position.inSeconds.toDouble(),
-            onChanged: handleSeek,
+          Expanded(
+            child: Slider(
+              min: 0,
+              max: duration.inSeconds.toDouble(),
+              value: position.inSeconds.toDouble(),
+              onChanged: handleSeek,
+            ),
           ),
           Text(formatDuration(duration)),
           IconButton(

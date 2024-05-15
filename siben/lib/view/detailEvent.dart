@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-
 import 'package:siben/models/museumTitle.dart';
 import 'package:siben/view/widget/audioControler.dart';
 import 'package:siben/viewmodel/detailEventController.dart';
@@ -26,65 +25,66 @@ class _DetailEventState extends State<DetailEvent> {
           appBar: AppBar(
             title: Text(widget.museum.title),
             actions: [
-              Row(
+              SpeedDial(
+                direction: SpeedDialDirection.down,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                buttonSize: const Size(50, 50),
+                spacing: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 children: [
-                  SpeedDial(
-                    direction: SpeedDialDirection.down,
+                  SpeedDialChild(
+                    child: Image.asset(
+                      "assets/indonesia.png",
+                      height: 50,
+                    ),
+                    label: 'Indonesian',
                     backgroundColor: Colors.transparent,
                     elevation: 0,
-                    buttonSize: const Size(50, 50),
-                    spacing: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                    labelStyle: const TextStyle(fontSize: 14),
+                    onTap: () => controller.changeSubtitle(
+                      widget.museum.subtitle,
+                      widget.museum.assetAudioPath,
                     ),
-                    children: [
-                      SpeedDialChild(
-                        child: Image.asset(
-                          "assets/indonesia.png",
-                          height: 50,
-                        ),
-                        label: 'Indonesian',
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        labelStyle: const TextStyle(fontSize: 14),
-                        onTap: () =>
-                            controller.changeSubtitle(widget.museum.subtitle),
-                      ),
-                      SpeedDialChild(
-                        child: Image.asset(
-                          "assets/united-kingdom.png",
-                          height: 40,
-                        ),
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        label: 'English',
-                        labelStyle: const TextStyle(fontSize: 14),
-                        onTap: () =>
-                            controller.changeSubtitle(widget.museum.subtitle2),
-                      ),
-                      SpeedDialChild(
-                        child: Image.asset(
-                          "assets/china.png",
-                          height: 50,
-                        ),
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        label: 'Mandarin',
-                        labelStyle: const TextStyle(fontSize: 14),
-                        onTap: () =>
-                            controller.changeSubtitle(widget.museum.subtitle3),
-                      ),
-                    ],
-                    // Widget yang berisi ikon-ikon
-                    child: const Row(
-                      children: [
-                        Icon(Icons.translate),
-                        Icon(Icons.arrow_drop_down_outlined),
-                      ],
+                  ),
+                  SpeedDialChild(
+                    child: Image.asset(
+                      "assets/united-kingdom.png",
+                      height: 40,
+                    ),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    label: 'English',
+                    labelStyle: const TextStyle(fontSize: 14),
+                    onTap: () => controller.changeSubtitle(
+                      widget.museum.subtitle2,
+                      widget.museum.assetAudioPath2,
+                    ),
+                  ),
+                  SpeedDialChild(
+                    child: Image.asset(
+                      "assets/china.png",
+                      height: 50,
+                    ),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    label: 'Mandarin',
+                    labelStyle: const TextStyle(fontSize: 14),
+                    onTap: () => controller.changeSubtitle(
+                      widget.museum.subtitle3,
+                      widget.museum.assetAudioPath3,
                     ),
                   ),
                 ],
-              )
+                child: const Row(
+                  children: [
+                    Icon(Icons.translate),
+                    Icon(Icons.arrow_drop_down_outlined),
+                  ],
+                ),
+              ),
             ],
           ),
           body: SingleChildScrollView(
@@ -117,7 +117,14 @@ class _DetailEventState extends State<DetailEvent> {
             },
             child: const Icon(Icons.volume_up),
           ),
-          bottomNavigationBar: isControlsVisible ? AudioControls() : null,
+          bottomNavigationBar: isControlsVisible
+              ? Obx(
+                  () => AudioControls(
+                      audioPath: controller.currentAudio.value.isNotEmpty
+                          ? controller.currentAudio.value
+                          : widget.museum.assetAudioPath),
+                )
+              : null,
         );
       },
     );
