@@ -75,6 +75,7 @@ class _DetailEventState extends State<DetailEvent> {
                     onTap: () => controller.changeSubtitle(
                       widget.museum.subtitle3,
                       widget.museum.assetAudioPath3,
+
                     ),
                   ),
                 ],

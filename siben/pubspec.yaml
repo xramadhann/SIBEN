@@ -39,6 +39,7 @@ dependencies:
   number_pagination: ^1.0.6
   just_audio: ^0.9.37
   get: ^4.6.6
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +60,7 @@ flutter:
   assets:
     - assets/1/
     - assets/
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
