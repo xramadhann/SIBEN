@@ -16,23 +16,24 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Expanded(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
               height: 210,
-              decoration: BoxDecoration(
-                color: Colors.orange[300],
-                borderRadius: const BorderRadius.only(
+              decoration: const BoxDecoration(
+                color: const Color(0xffFEB52B),
+                borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20),
                 ),
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 70),
                   Container(
-                    margin: const EdgeInsets.only(right: 80),
+                    margin: const EdgeInsets.only(right: 80, left: 20),
                     child: const Text(
                       "HI, Selamat datang di siben!",
                       textAlign: TextAlign.start,
@@ -57,15 +58,13 @@ class Homepage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Container(
-              margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-              padding: EdgeInsets.only(left: 15, right: 15),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               height: 120,
-              width: 500,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     children: [
@@ -75,7 +74,7 @@ class Homepage extends StatelessWidget {
                           margin: const EdgeInsets.all(35),
                         ),
                       ),
-                      Text("data 1"),
+                      const Text("data 1"),
                     ],
                   ),
                   Column(
@@ -86,7 +85,7 @@ class Homepage extends StatelessWidget {
                           margin: const EdgeInsets.all(35),
                         ),
                       ),
-                      Text("data 1"),
+                      const Text("data 1"),
                     ],
                   ),
                   Column(
@@ -97,7 +96,7 @@ class Homepage extends StatelessWidget {
                           margin: const EdgeInsets.all(35),
                         ),
                       ),
-                      Text("data 1"),
+                      const Text("data 1"),
                     ],
                   ),
                   Column(
@@ -108,60 +107,62 @@ class Homepage extends StatelessWidget {
                           margin: const EdgeInsets.all(35),
                         ),
                       ),
-                      Text("data 1"),
+                      const Text("data 1"),
                     ],
                   ),
                 ],
               ),
             ),
-            Expanded(
-              child: Obx(
-                () => GridView.builder(
-                  padding: const EdgeInsets.all(20),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 13 / 16,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                  ),
-                  itemCount: _controller.museums.length,
-                  itemBuilder: (context, index) {
-                    final museum = _controller.museums[index];
-                    return GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailEvent(museum: museum),
-                        ),
-                      ),
-                      child: Card(
-                        elevation: 1,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: Image.asset(
-                                museum.assetImagePath,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Text(
-                                museum.title,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+            const SizedBox(height: 10),
+            Obx(
+              () => GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(20),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 13 / 16,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
                 ),
+                itemCount: _controller.museums.length,
+                itemBuilder: (context, index) {
+                  final museum = _controller.museums[index];
+                  return GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailEvent(museum: museum),
+                      ),
+                    ),
+                    child: Card(
+                      color: Colors.white,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              museum.assetImagePath,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              museum.title,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
             )
           ],

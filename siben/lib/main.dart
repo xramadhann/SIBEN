@@ -19,6 +19,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Siben',
       theme: ThemeData(
+        useMaterial3: true,
+        textTheme: GoogleFonts.montserratTextTheme(),
         colorScheme: const ColorScheme(
           primary: Color(0xFFFEB52B),
           secondary: Color(0xFFFEB52B),
@@ -31,9 +33,7 @@ class MyApp extends StatelessWidget {
           onBackground: Colors.black,
           onError: Colors.white,
           brightness: Brightness.light,
-        ),
-        useMaterial3: true,
-        textTheme: GoogleFonts.montserratTextTheme(),
+        ).copyWith(background: const Color.fromARGB(255, 245, 245, 245)),
       ),
       home: SafeArea(
         child: Homepage(),
