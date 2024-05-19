@@ -1,3 +1,6 @@
+// ignore_for_file: unnecessary_import, unnecessary_const
+
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -15,15 +18,113 @@ class Homepage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(20),
-            child: SearchBar(
-              hintText: "Search",
-              onChanged: _controller.searchMuseum,
-              padding: MaterialStateProperty.all<EdgeInsets>(
-                  const EdgeInsets.symmetric(horizontal: 15)),
-              leading: const Icon(Icons.search),
+            height: 210,
+            decoration: BoxDecoration(
+              color: Colors.orange[300],
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+            child: Column(
+              children: [
+                const Text(
+                  "Hi Selamat Datang!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                Container(
+                  margin: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.only(bottom: 50),
+                  child: SearchBar(
+                    hintText: "Search",
+                    onChanged: _controller.searchMuseum,
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.symmetric(horizontal: 15),
+                    ),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                    leading: const Icon(Icons.search),
+                  ),
+                ),
+              ],
             ),
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Row(
+            children: <Widget>[
+              Card(
+                margin: EdgeInsets.all(20),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(50),
+                    ),
+                    const Icon(Icons.safety_check),
+                  ],
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.all(20),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(50),
+                    ),
+                    Text(
+                      "Piagam",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.all(20),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(50),
+                    ),
+                    Text(
+                      "Piagam",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.all(20),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(50),
+                    ),
+                    Text(
+                      "Piagam",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 20),
           Expanded(
             child: Obx(
               () => GridView.builder(
