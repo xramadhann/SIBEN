@@ -170,9 +170,12 @@ class Homepage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Expanded(
-                            child: Image.asset(
-                              museum.assetImagePath,
-                              fit: BoxFit.cover,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                museum.assetImagePath,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           Padding(
