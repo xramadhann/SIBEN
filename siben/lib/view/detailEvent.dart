@@ -29,11 +29,12 @@ class _DetailEventState extends State<DetailEvent> {
             ),
             actions: [
               SpeedDial(
+                childMargin: EdgeInsets.only(left: 200),
                 direction: SpeedDialDirection.down,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 buttonSize: const Size(50, 50),
-                spacing: 2,
+                spacing: 4,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -55,7 +56,7 @@ class _DetailEventState extends State<DetailEvent> {
                   SpeedDialChild(
                     child: Image.asset(
                       "assets/images/united-kingdom.png",
-                      height: 40,
+                      height: 50,
                     ),
                     backgroundColor: Colors.transparent,
                     elevation: 0,
@@ -91,17 +92,28 @@ class _DetailEventState extends State<DetailEvent> {
               ),
             ],
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset(
-                  widget.museum.assetImagePath,
-                  height: 250,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(0),
+          body: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 600),
+                    child: ClipRRect(
+                      child: Image.asset(
+                        widget.museum.assetImagePath,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: SingleChildScrollView(
                   child: Container(
-                    height: 600,
+                    margin: EdgeInsets.only(top: 580),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
@@ -117,9 +129,10 @@ class _DetailEventState extends State<DetailEvent> {
                     ),
                   ),
                 ),
-                // Add other content here
-              ],
-            ),
+              ),
+
+              // Add other content here
+            ],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {

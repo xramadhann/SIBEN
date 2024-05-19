@@ -46,7 +46,6 @@ class _AudioControlsState extends State<AudioControls> {
         setState(() => position = p);
       });
 
-
       player.durationStream.listen((d) {
         setState(() => duration = d ?? Duration.zero);
       });
