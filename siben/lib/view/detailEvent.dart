@@ -23,7 +23,10 @@ class _DetailEventState extends State<DetailEvent> {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(widget.museum.title),
+            title: Text(
+              widget.museum.title,
+              style: const TextStyle(fontSize: 15),
+            ),
             actions: [
               SpeedDial(
                 direction: SpeedDialDirection.down,
@@ -75,7 +78,6 @@ class _DetailEventState extends State<DetailEvent> {
                     onTap: () => controller.changeSubtitle(
                       widget.museum.subtitle3,
                       widget.museum.assetAudioPath3,
-
                     ),
                   ),
                 ],
@@ -96,13 +98,21 @@ class _DetailEventState extends State<DetailEvent> {
                   height: 250,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Obx(
-                    () => Text(
-                      controller.currentSubtitle.value.isNotEmpty
-                          ? controller.currentSubtitle.value
-                          : widget.museum.subtitle,
-                      style: const TextStyle(fontSize: 16),
+                  padding: const EdgeInsets.all(0),
+                  child: Container(
+                    height: 600,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.all(25),
+                    child: Obx(
+                      () => Text(
+                        controller.currentSubtitle.value.isNotEmpty
+                            ? controller.currentSubtitle.value
+                            : widget.museum.subtitle,
+                        style: const TextStyle(fontSize: 15),
+                      ),
                     ),
                   ),
                 ),
