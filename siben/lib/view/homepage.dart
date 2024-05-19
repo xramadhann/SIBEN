@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
 import 'package:siben/view/detailEvent.dart';
 import 'package:siben/viewmodel/museumController.dart';
 
@@ -35,7 +34,7 @@ class Homepage extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(right: 80, left: 20),
                     child: const Text(
-                      "HI, Selamat datang di siben!",
+                      "HI, Selamat datang di SiBen!",
                       textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: 20,
@@ -61,20 +60,23 @@ class Homepage extends StatelessWidget {
             const SizedBox(height: 20),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
               height: 120,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
                 children: [
                   Column(
                     children: [
                       Card(
                         margin: const EdgeInsets.all(10),
                         child: Container(
-                          margin: const EdgeInsets.all(35),
+                          height: 30,
+                          margin: const EdgeInsets.all(20),
+                          child: Image.asset(
+                            "assets/images/filter/clothes.png",
+                          ),
                         ),
                       ),
-                      const Text("data 1"),
+                      const Text("Pakaian"),
                     ],
                   ),
                   Column(
@@ -82,10 +84,14 @@ class Homepage extends StatelessWidget {
                       Card(
                         margin: const EdgeInsets.all(10),
                         child: Container(
-                          margin: const EdgeInsets.all(35),
+                          height: 30,
+                          margin: const EdgeInsets.all(20),
+                          child: Image.asset(
+                            "assets/images/filter/sunglasses.png",
+                          ),
                         ),
                       ),
-                      const Text("data 1"),
+                      const Text("Aksesoris"),
                     ],
                   ),
                   Column(
@@ -93,10 +99,14 @@ class Homepage extends StatelessWidget {
                       Card(
                         margin: const EdgeInsets.all(10),
                         child: Container(
-                          margin: const EdgeInsets.all(35),
+                          height: 30,
+                          margin: const EdgeInsets.all(20),
+                          child: Image.asset(
+                            "assets/images/filter/award.png",
+                          ),
                         ),
                       ),
-                      const Text("data 1"),
+                      const Text("Penghargaan"),
                     ],
                   ),
                   Column(
@@ -104,10 +114,29 @@ class Homepage extends StatelessWidget {
                       Card(
                         margin: const EdgeInsets.all(10),
                         child: Container(
-                          margin: const EdgeInsets.all(35),
+                          height: 30,
+                          margin: const EdgeInsets.all(20),
+                          child: Image.asset(
+                            "assets/images/filter/image-galery.png",
+                          ),
                         ),
                       ),
-                      const Text("data 1"),
+                      const Text("Media"),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Card(
+                        margin: const EdgeInsets.all(10),
+                        child: Container(
+                          height: 30,
+                          margin: const EdgeInsets.all(20),
+                          child: Image.asset(
+                            "assets/images/filter/application.png",
+                          ),
+                        ),
+                      ),
+                      const Text("Lainnya"),
                     ],
                   ),
                 ],
