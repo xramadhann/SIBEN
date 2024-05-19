@@ -25,7 +25,7 @@ class _DetailEventState extends State<DetailEvent> {
           appBar: AppBar(
             title: Text(
               widget.museum.title,
-              style: const TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 14),
             ),
             actions: [
               SpeedDial(
@@ -40,7 +40,7 @@ class _DetailEventState extends State<DetailEvent> {
                 children: [
                   SpeedDialChild(
                     child: Image.asset(
-                      "assets/indonesia.png",
+                      "assets/images/indonesia.png",
                       height: 50,
                     ),
                     label: 'Indonesian',
@@ -54,7 +54,7 @@ class _DetailEventState extends State<DetailEvent> {
                   ),
                   SpeedDialChild(
                     child: Image.asset(
-                      "assets/united-kingdom.png",
+                      "assets/images/united-kingdom.png",
                       height: 40,
                     ),
                     backgroundColor: Colors.transparent,
@@ -68,7 +68,7 @@ class _DetailEventState extends State<DetailEvent> {
                   ),
                   SpeedDialChild(
                     child: Image.asset(
-                      "assets/china.png",
+                      "assets/images/china.png",
                       height: 50,
                     ),
                     backgroundColor: Colors.transparent,
@@ -83,8 +83,9 @@ class _DetailEventState extends State<DetailEvent> {
                 ],
                 child: const Row(
                   children: [
-                    Icon(Icons.translate),
-                    Icon(Icons.arrow_drop_down_outlined),
+                    Icon(Icons.translate, color: Color(0xffFEB52B)),
+                    Icon(Icons.arrow_drop_down_outlined,
+                        color: Color(0xffFEB52B)),
                   ],
                 ),
               ),
