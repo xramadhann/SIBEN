@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -31,7 +30,7 @@ class _DetailEventState extends State<DetailEvent> {
             ),
             actions: [
               SpeedDial(
-                childMargin: EdgeInsets.only(left: 200),
+                childMargin: const EdgeInsets.only(left: 200),
                 direction: SpeedDialDirection.down,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
@@ -94,7 +93,7 @@ class _DetailEventState extends State<DetailEvent> {
               ),
             ],
           ),
-          body: Expanded(
+          body: SafeArea(
             child: Stack(
               clipBehavior: Clip.none,
               children: <Widget>[
@@ -116,7 +115,7 @@ class _DetailEventState extends State<DetailEvent> {
                   borderRadius: BorderRadius.circular(10),
                   child: SingleChildScrollView(
                     child: Container(
-                      margin: EdgeInsets.only(top: 580),
+                      margin: const EdgeInsets.only(top: 580),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
