@@ -90,11 +90,23 @@ class _AudioControlsState extends State<AudioControls> {
       height: 100,
       child: Column(
         children: <Widget>[
-          IconButton(
-            icon: Icon(player.playing ? Icons.pause : Icons.play_arrow),
-            onPressed: handlePlayPause,
-            iconSize: 30,
-            color: const Color(0xFFFEB52B),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.stop),
+                onPressed: handlePlayPause,
+                iconSize: 30,
+                color: const Color(0xFFFEB52B),
+              ),
+              IconButton(
+                icon: Icon(player.playing ? Icons.pause : Icons.play_arrow),
+                onPressed: handlePlayPause,
+                iconSize: 30,
+                color: const Color(0xFFFEB52B),
+              ),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
