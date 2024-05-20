@@ -46,7 +46,6 @@ class _AudioControlsState extends State<AudioControls> {
         setState(() => position = p);
       });
 
-
       player.durationStream.listen((d) {
         setState(() => duration = d ?? Duration.zero);
       });
@@ -82,24 +81,50 @@ class _AudioControlsState extends State<AudioControls> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        color: Color.fromARGB(255, 239, 239, 239),
+      ),
       height: 100,
-      color: Colors.grey[200],
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(formatDuration(position)),
-          Expanded(
-            child: Slider(
-              min: 0,
-              max: duration.inSeconds.toDouble(),
-              value: position.inSeconds.toDouble(),
-              onChanged: handleSeek,
-            ),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.stop),
+                onPressed: handlePlayPause,
+                iconSize: 30,
+                color: const Color(0xFFFEB52B),
+              ),
+              IconButton(
+                icon: Icon(player.playing ? Icons.pause : Icons.play_arrow),
+                onPressed: handlePlayPause,
+                iconSize: 30,
+                color: const Color(0xFFFEB52B),
+              ),
+            ],
           ),
-          Text(formatDuration(duration)),
-          IconButton(
-            icon: Icon(player.playing ? Icons.pause : Icons.play_arrow),
-            onPressed: handlePlayPause,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(formatDuration(position)),
+              Expanded(
+                child: Slider(
+                  min: 0,
+                  thumbColor: const Color(0xFFFEB52B),
+                  max: duration.inSeconds.toDouble(),
+                  value: position.inSeconds.toDouble(),
+                  onChanged: handleSeek,
+                ),
+              ),
+              Text(
+                formatDuration(duration),
+              ),
+            ],
           ),
         ],
       ),

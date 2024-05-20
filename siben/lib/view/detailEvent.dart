@@ -23,21 +23,29 @@ class _DetailEventState extends State<DetailEvent> {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(widget.museum.title),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            backgroundColor: Colors.white,
+            title: Text(
+              widget.museum.title,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
             actions: [
               SpeedDial(
+                childMargin: const EdgeInsets.only(left: 200),
                 direction: SpeedDialDirection.down,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 buttonSize: const Size(50, 50),
-                spacing: 2,
+                spacing: 4,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
                 children: [
                   SpeedDialChild(
                     child: Image.asset(
-                      "assets/indonesia.png",
+                      "assets/images/indonesia.png",
                       height: 50,
                     ),
                     label: 'Indonesian',
@@ -51,8 +59,8 @@ class _DetailEventState extends State<DetailEvent> {
                   ),
                   SpeedDialChild(
                     child: Image.asset(
-                      "assets/united-kingdom.png",
-                      height: 40,
+                      "assets/images/united-kingdom.png",
+                      height: 50,
                     ),
                     backgroundColor: Colors.transparent,
                     elevation: 0,
@@ -65,7 +73,7 @@ class _DetailEventState extends State<DetailEvent> {
                   ),
                   SpeedDialChild(
                     child: Image.asset(
-                      "assets/china.png",
+                      "assets/images/china.png",
                       height: 50,
                     ),
                     backgroundColor: Colors.transparent,
@@ -75,37 +83,60 @@ class _DetailEventState extends State<DetailEvent> {
                     onTap: () => controller.changeSubtitle(
                       widget.museum.subtitle3,
                       widget.museum.assetAudioPath3,
-
                     ),
                   ),
                 ],
                 child: const Row(
                   children: [
-                    Icon(Icons.translate),
-                    Icon(Icons.arrow_drop_down_outlined),
+                    Icon(Icons.translate, color: Color(0xffFEB52B)),
+                    Icon(Icons.arrow_drop_down_outlined,
+                        color: Color(0xffFEB52B)),
                   ],
                 ),
               ),
             ],
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset(
-                  widget.museum.assetImagePath,
-                  height: 250,
+          body: SafeArea(
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Flexible(
+                      child: ClipRRect(
+                        child: Image.asset(
+                          widget.museum.assetImagePath,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Obx(
-                    () => Text(
-                      controller.currentSubtitle.value.isNotEmpty
-                          ? controller.currentSubtitle.value
-                          : widget.museum.subtitle,
-                      style: const TextStyle(fontSize: 16),
+
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: SingleChildScrollView(
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 580),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.only(
+                          top: 30, left: 20, right: 20, bottom: 100),
+                      child: Obx(
+                        () => Text(
+                          controller.currentSubtitle.value.isNotEmpty
+                              ? controller.currentSubtitle.value
+                              : widget.museum.subtitle,
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                      ),
                     ),
                   ),
                 ),
+
                 // Add other content here
               ],
             ),
