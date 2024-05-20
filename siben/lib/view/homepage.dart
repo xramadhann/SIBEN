@@ -19,7 +19,7 @@ class Homepage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              height: 210,
+              height: 180,
               decoration: const BoxDecoration(
                 color: const Color(0xffFEB52B),
                 borderRadius: BorderRadius.only(
@@ -30,7 +30,7 @@ class Homepage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 70),
+                  const SizedBox(height: 40),
                   Container(
                     margin: const EdgeInsets.only(right: 80, left: 20),
                     child: const Text(
