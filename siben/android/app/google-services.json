@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "207255875397",
+    "project_id": "siben-345d6",
+    "storage_bucket": "siben-345d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207255875397:android:12653e398a6311b0ead82c",
+        "android_client_info": {
+          "package_name": "com.example.siben"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs0LUgSHRX_SuBCGtWn3VFExO2k3dvquo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
