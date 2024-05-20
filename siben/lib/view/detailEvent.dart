@@ -23,6 +23,9 @@ class _DetailEventState extends State<DetailEvent> {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
             backgroundColor: Colors.white,
             title: Text(
               widget.museum.title,
