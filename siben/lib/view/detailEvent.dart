@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -23,9 +24,10 @@ class _DetailEventState extends State<DetailEvent> {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.white,
             title: Text(
               widget.museum.title,
-              style: const TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
             actions: [
               SpeedDial(
@@ -92,47 +94,50 @@ class _DetailEventState extends State<DetailEvent> {
               ),
             ],
           ),
-          body: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 600),
-                    child: ClipRRect(
-                      child: Image.asset(
-                        widget.museum.assetImagePath,
-                        fit: BoxFit.cover,
+          body: Expanded(
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Flexible(
+                      child: ClipRRect(
+                        child: Image.asset(
+                          widget.museum.assetImagePath,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: SingleChildScrollView(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 580),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(25),
-                    child: Obx(
-                      () => Text(
-                        controller.currentSubtitle.value.isNotEmpty
-                            ? controller.currentSubtitle.value
-                            : widget.museum.subtitle,
-                        style: const TextStyle(fontSize: 15),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: SingleChildScrollView(
+                    child: Container(
+                      margin: EdgeInsets.only(top: 580),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.only(
+                          top: 30, left: 20, right: 20, bottom: 100),
+                      child: Obx(
+                        () => Text(
+                          controller.currentSubtitle.value.isNotEmpty
+                              ? controller.currentSubtitle.value
+                              : widget.museum.subtitle,
+                          style: const TextStyle(fontSize: 15),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
 
-              // Add other content here
-            ],
+                // Add other content here
+              ],
+            ),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
