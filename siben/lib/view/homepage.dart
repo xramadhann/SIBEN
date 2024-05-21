@@ -1,16 +1,14 @@
-// ignore_for_file: unnecessary_import, unnecessary_const
+// ignore_for_file: unnecessary_const
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:siben/view/detailEvent.dart';
 import 'package:siben/viewmodel/museumController.dart';
 
 class Homepage extends StatelessWidget {
   final MuseumController _controller = Get.put(MuseumController());
 
-  Homepage({super.key});
+  Homepage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +35,10 @@ class Homepage extends StatelessWidget {
                       "HI, Selamat datang di SiBen!",
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Container(
@@ -64,81 +63,16 @@ class Homepage extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  Column(
-                    children: [
-                      Card(
-                        margin: const EdgeInsets.all(10),
-                        child: Container(
-                          height: 30,
-                          margin: const EdgeInsets.all(20),
-                          child: Image.asset(
-                            "assets/images/filter/clothes.png",
-                          ),
-                        ),
-                      ),
-                      const Text("Pakaian"),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Card(
-                        margin: const EdgeInsets.all(10),
-                        child: Container(
-                          height: 30,
-                          margin: const EdgeInsets.all(20),
-                          child: Image.asset(
-                            "assets/images/filter/sunglasses.png",
-                          ),
-                        ),
-                      ),
-                      const Text("Aksesoris"),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Card(
-                        margin: const EdgeInsets.all(10),
-                        child: Container(
-                          height: 30,
-                          margin: const EdgeInsets.all(20),
-                          child: Image.asset(
-                            "assets/images/filter/award.png",
-                          ),
-                        ),
-                      ),
-                      const Text("Penghargaan"),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Card(
-                        margin: const EdgeInsets.all(10),
-                        child: Container(
-                          height: 30,
-                          margin: const EdgeInsets.all(20),
-                          child: Image.asset(
-                            "assets/images/filter/image-galery.png",
-                          ),
-                        ),
-                      ),
-                      const Text("Media"),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Card(
-                        margin: const EdgeInsets.all(10),
-                        child: Container(
-                          height: 30,
-                          margin: const EdgeInsets.all(20),
-                          child: Image.asset(
-                            "assets/images/filter/application.png",
-                          ),
-                        ),
-                      ),
-                      const Text("Lainnya"),
-                    ],
-                  ),
+                  buildFilterCard(
+                      "Pakaian", "assets/images/filter/clothes.png"),
+                  buildFilterCard(
+                      "Aksesoris", "assets/images/filter/sunglasses.png"),
+                  buildFilterCard(
+                      "Penghargaan", "assets/images/filter/award.png"),
+                  buildFilterCard(
+                      "Galeri", "assets/images/filter/image-galery.png"),
+                  buildFilterCard(
+                      "Lainnya", "assets/images/filter/application.png"),
                 ],
               ),
             ),
@@ -200,6 +134,42 @@ class Homepage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget buildFilterCard(String label, String imagePath) {
+    return GestureDetector(
+      onTap: () {
+        _controller.filterByCategory(label);
+      },
+      child: Obx(() {
+        return Column(
+          children: [
+            Card(
+              margin: const EdgeInsets.all(10),
+              color: _controller.selectedCategory.value == label
+                  ? Colors.amber
+                  : null,
+              child: Container(
+                height: 30,
+                margin: const EdgeInsets.all(20),
+                child: Image.asset(
+                  imagePath,
+                ),
+              ),
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                color: _controller.selectedCategory.value == label
+                    ? Colors.black
+                    : Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }
