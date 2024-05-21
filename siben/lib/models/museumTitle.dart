@@ -7,6 +7,7 @@ class Museum {
   final String assetAudioPath;
   final String assetAudioPath2;
   final String assetAudioPath3;
+  final String category;
   const Museum({
     required this.title,
     required this.subtitle,
@@ -16,6 +17,7 @@ class Museum {
     required this.assetAudioPath,
     required this.assetAudioPath2,
     required this.assetAudioPath3,
+    required this.category,
   });
 }
 
@@ -32,9 +34,10 @@ const allMuseums = [
     assetAudioPath: "assets/1/ina.mp3",
     assetAudioPath2: "assets/1/english.mp3",
     assetAudioPath3: "assets/1/mandarin.mp3",
+    category: "Pakaian",
   ),
   Museum(
-    title: "Ben berseragam KOSPASGAT ",
+    title: "Ben berseragam ",
     subtitle:
         "Ben yang menggunakan seragam bertuliskan KOPASGAT (Komando Pasukan Gerak Cepat) ini merupakan kostum ia manggung. Namun, Ben bersama dengan kawannya yang tergabung dalam Melody Boys memang pernah bekerja di KODAM (Komando Daerah Militer) V Jaya.Berkat kedekatannya bersama pemilik Yacht Club, Letnan Dading, dimana ia sering manggung bersama Melody Boys, ia dipekerjakan sebagai musisi. Ia dan temannya bekerja sebagai karyawan pada bagian Uril (urusan moril). Mereka tidak bekerja setiap hari hanya setiap Sabtu untuk latihan. Namun mereka harus siap menghibur dan bermain di berbagai tempat bila KODAM menggelar acara untuk menghibur para prajurit.",
     subtitle2:
@@ -45,5 +48,6 @@ const allMuseums = [
     assetAudioPath: "assets/1/ina.mp3",
     assetAudioPath2: "assets/1/english.mp3",
     assetAudioPath3: "assets/1/mandarin.mp3",
+    category: "tes",
   ),
 ];
