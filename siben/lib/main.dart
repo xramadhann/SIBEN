@@ -33,7 +33,9 @@ class MyApp extends StatelessWidget {
           onBackground: Colors.black,
           onError: Colors.white,
           brightness: Brightness.light,
-        ).copyWith(background: const Color.fromARGB(255, 245, 245, 245)),
+        ).copyWith(
+          background: const Color.fromARGB(255, 245, 245, 245),
+        ),
       ),
       home: SafeArea(
         child: Homepage(),
