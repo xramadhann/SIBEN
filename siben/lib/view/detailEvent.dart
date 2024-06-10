@@ -89,8 +89,10 @@ class _DetailEventState extends State<DetailEvent> {
                 child: const Row(
                   children: [
                     Icon(Icons.translate, color: Color(0xffFEB52B)),
-                    Icon(Icons.arrow_drop_down_outlined,
-                        color: Color(0xffFEB52B)),
+                    Icon(
+                      Icons.arrow_drop_down_outlined,
+                      color: Color(0xffFEB52B),
+                    ),
                   ],
                 ),
               ),
@@ -113,7 +115,6 @@ class _DetailEventState extends State<DetailEvent> {
                     ),
                   ],
                 ),
-
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: SingleChildScrollView(
@@ -124,7 +125,11 @@ class _DetailEventState extends State<DetailEvent> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       padding: const EdgeInsets.only(
-                          top: 30, left: 20, right: 20, bottom: 100),
+                        top: 30,
+                        left: 20,
+                        right: 20,
+                        bottom: 100,
+                      ),
                       child: Obx(
                         () => Text(
                           controller.currentSubtitle.value.isNotEmpty
@@ -136,8 +141,6 @@ class _DetailEventState extends State<DetailEvent> {
                     ),
                   ),
                 ),
-
-                // Add other content here
               ],
             ),
           ),
@@ -152,9 +155,10 @@ class _DetailEventState extends State<DetailEvent> {
           bottomNavigationBar: isControlsVisible
               ? Obx(
                   () => AudioControls(
-                      audioPath: controller.currentAudio.value.isNotEmpty
-                          ? controller.currentAudio.value
-                          : widget.museum.assetAudioPath),
+                    audioPath: controller.currentAudio.value.isNotEmpty
+                        ? controller.currentAudio.value
+                        : widget.museum.assetAudioPath,
+                  ),
                 )
               : null,
         );

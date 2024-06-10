@@ -65,14 +65,14 @@ class Homepage extends StatelessWidget {
                 children: [
                   buildFilterCard(
                       "Pakaian", "assets/images/filter/clothes.png"),
-                  buildFilterCard(
-                      "Aksesoris", "assets/images/filter/sunglasses.png"),
+                  buildFilterCard("Karya dan Memori",
+                      "assets/images/filter/sunglasses.png"),
                   buildFilterCard(
                       "Penghargaan", "assets/images/filter/award.png"),
                   buildFilterCard(
-                      "Galeri", "assets/images/filter/image-galery.png"),
-                  buildFilterCard(
-                      "Lainnya", "assets/images/filter/application.png"),
+                      "Aksesoris", "assets/images/filter/image-galery.png"),
+                  // buildFilterCard(
+                  //     "Lainnya", "assets/images/filter/application.png"),
                 ],
               ),
             ),
