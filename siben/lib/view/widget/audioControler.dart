@@ -26,6 +26,24 @@ class _AudioControlsState extends State<AudioControls> {
     }
   }
 
+  void reset() {
+    player.seek(Duration.zero);
+
+    setState(() {
+      player.stop();
+    });
+  }
+
+  void handleLoop() {
+    setState(() {
+      if (player.loopMode == LoopMode.one) {
+        player.setLoopMode(LoopMode.off);
+      } else {
+        player.setLoopMode(LoopMode.one);
+      }
+    });
+  }
+
   void handleSeek(double value) {
     player.seek(Duration(seconds: value.toInt()));
   }
@@ -84,7 +102,9 @@ class _AudioControlsState extends State<AudioControls> {
       padding: const EdgeInsets.only(left: 20, right: 20),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
         color: Color.fromARGB(255, 239, 239, 239),
       ),
       height: 100,
@@ -96,13 +116,23 @@ class _AudioControlsState extends State<AudioControls> {
             children: [
               IconButton(
                 icon: const Icon(Icons.stop),
-                onPressed: handlePlayPause,
+                onPressed: reset,
                 iconSize: 30,
                 color: const Color(0xFFFEB52B),
               ),
               IconButton(
                 icon: Icon(player.playing ? Icons.pause : Icons.play_arrow),
                 onPressed: handlePlayPause,
+                iconSize: 30,
+                color: const Color(0xFFFEB52B),
+              ),
+              IconButton(
+                icon: Icon(
+                  player.loopMode == LoopMode.one
+                      ? Icons.repeat_one
+                      : Icons.repeat,
+                ),
+                onPressed: handleLoop,
                 iconSize: 30,
                 color: const Color(0xFFFEB52B),
               ),
